@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#              #
-#    Updated: 2023/11/22 12:54:20 by csakamot         ###   ########.fr        #
+#    Updated: 2023/11/22 13:26:39 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ RESET			= \033[0m
 all:			${NAME}
 
 %.o:			%.C
-	${CC} ${CFLAGS} -c $< -o
+	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}:		${OBJS}
 	@echo ""
