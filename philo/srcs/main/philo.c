@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/11/29 03:23:32 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:27:40 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../../includes/philo.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
-# include <pthread.h>
-
-# define YES 1
-# define NO 0
-#endif
+int	main(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	return (0);
+}
