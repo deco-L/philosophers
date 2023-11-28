@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#              #
-#    Updated: 2023/11/29 03:23:10 by csakamot         ###   ########.fr        #
+#    Updated: 2023/11/29 04:44:43 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,18 @@ HEAD		= ./includes/
 PRE			= ./srcs/
 MAIN		= philo/
 INPUT		= input/
+UTILS		= utils/
 ##-----------------------------##
 
 
 
 ##------------Srcs-------------##
 MAINSRC			= philo.c
+INPUTSRC		= input.c
+UTILSSRC		= input_utils.c
 
-SRCS			= ${addprefix ${MAIN}, ${MAINSRC}}
+SRCS			= ${addprefix ${MAIN}, ${MAINSRC}} ${addprefix ${INPUT}, ${INPUTSRC}} \
+					${addprefix ${UTILS}, ${UTILSSRC}}
 ##-----------------------------##
 
 

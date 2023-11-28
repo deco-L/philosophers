@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/11/29 05:27:36 by csakamot         ###   ########.fr       */
+/*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
+/*   Updated: 2023/11/29 04:35:25 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#ifndef STRUCTURE_H
+# define STRUCTURE_H
 
-int	main(int argc, char **argv)
+typedef struct s_philo
 {
-	t_philo	philo;
+	int	**arg;
+}			   t_philo;
 
-	if (!input(&philo, argc, argv))
-		return (1);
-	return (0);
-}
+#endif
