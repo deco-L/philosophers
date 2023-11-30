@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/11/30 11:19:02 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:41:42 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-int	main(int argc, char **argv)
-{
-	t_root	root;
+# include <stdio.h>
+# include <stdbool.h>
 
-	if (!input(&root, argc, argv))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+bool	malloc_error(void *src);
+
+#endif
