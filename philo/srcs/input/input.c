@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/11/29 05:27:42 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:07:52 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,22 @@ static bool	check_args_is_num(int argc, char **argv)
 	{
 		if (!str_isdigit(argv[index]))
 		{
-			printf("Error\nNot valid arguments\n");
-			return (false);
+			printf("Error\nInvalid arguments\n");
+			return (true);
 		}
 		index++;
 	}
-	return (true);
+	return (false);
 }
 
-bool	input(t_philo *philo, int argc, char **argv)
+bool	input(t_root *root, int argc, char **argv)
 {
 	if (check_number_args(argc))
 		return (false);
 	if (check_args_is_num(argc, argv))
 		return (false);
-	memset(philo, 0, sizeof(t_philo));
+	memset(root, 0, sizeof(t_root));
+	if (!init_input(root, argc, argv))
+		return (false);
 	return (true);
 }

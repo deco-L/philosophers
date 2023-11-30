@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#              #
-#    Updated: 2023/11/29 04:44:43 by csakamot         ###   ########.fr        #
+#    Updated: 2023/11/30 11:44:19 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,17 +22,19 @@ PRE			= ./srcs/
 MAIN		= philo/
 INPUT		= input/
 UTILS		= utils/
+ERROR		= error/
 ##-----------------------------##
 
 
 
 ##------------Srcs-------------##
 MAINSRC			= philo.c
-INPUTSRC		= input.c
-UTILSSRC		= input_utils.c
+INPUTSRC		= input.c init_input.c
+UTILSSRC		= input_utils.c ft_atoi.c ft_bzero.c ft_calloc.c
+ERRORSRC		= malloc_error.c
 
 SRCS			= ${addprefix ${MAIN}, ${MAINSRC}} ${addprefix ${INPUT}, ${INPUTSRC}} \
-					${addprefix ${UTILS}, ${UTILSSRC}}
+					${addprefix ${UTILS}, ${UTILSSRC}} ${addprefix ${ERROR}, ${ERRORSRC}}
 ##-----------------------------##
 
 
