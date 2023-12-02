@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/11/30 12:07:58 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:46:31 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ static void	assign_arguments(t_input *input, int argc, char **argv)
 	input->time_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		input->count_task = ft_atoi(argv[5]);
-	printf("input->number_philos:%d\n", input->number_philos);
-	printf("input->time_die:%d\n", input->time_die);
-	printf("input->time_eat:%d\n", input->time_eat);
-	printf("input->time_sleep:%d\n", input->time_sleep);
-	if (argc == 6)
-		printf("input->count_task:%d\n", input->count_task);
 	return ;
 }
 
@@ -60,7 +54,5 @@ bool	init_input(t_root *root, int argc, char **argv)
 	assign_arguments(root->input, argc, argv);
 	if (check_assigned_free(root->input))
 		return (false);
-	if (root->input != NULL)
-		free(root->input);
 	return (true);
 }
