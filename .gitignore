@@ -5,5 +5,4 @@
 
 *.a
 *.o
-minilibx_test_linux/mlx_linux
 *.out
