@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 15:40:18 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:06:28 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 typedef struct s_mutex
 {
+	int				id;
 	int				*start;
 	pthread_mutex_t	*fork;
 }				t_mutex;
 
 typedef struct s_thread
 {
-	int				id;
 	int				errorno;
 	pthread_t		*thread;
 	t_mutex			*mutex;

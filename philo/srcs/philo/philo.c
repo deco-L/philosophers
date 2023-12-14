@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 15:34:28 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:21:36 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ int	main(int argc, char **argv)
 	// gettimeofday(&tv, NULL);
 	// printf("tv_sec:%ld, tv_usec:%ld\n", tv.tv_sec, tv.tv_usec);
 	if (!init_thread(&root, root.input))
-	{
-		free(root.input);
 		return (EXIT_FAILURE);
-	}
-	printf("hello\n");
+	printf("ok!\n");
 	start_thread(root.thread);
 	wait_thread(root.input, root.thread);
 	destory_thread(root.thread);

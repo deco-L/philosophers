@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 15:35:45 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:23:19 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,14 @@ static t_thread	*create_thread(t_root *root, t_thread *head, int id)
 
 	(void)root;
 	new = (t_thread *)ft_calloc(sizeof(t_thread), 1);
+	if (malloc_error(new))
+		return (destory_thread(head), NULL);
 	new->prev = NULL;
 	new->next = NULL;
-	if (!new)
-		return (destory_thread(head), NULL);
-	new->id = id;
-	if (!init_mutex(new))
+	if (!init_mutex(new, id))
 		return (destory_thread(head), NULL);
 	new->thread = (pthread_t *)ft_calloc(sizeof(pthread_t), 1);
-	if (!new->thread)
+	if (malloc_error(new->thread))
 		return (destory_thread(head), NULL);
 	new->errorno = pthread_create(new->thread, NULL, \
 						routine, (void *)new->mutex);
@@ -57,13 +56,15 @@ static void	add_back_thread(t_thread *head, t_thread *new)
 	return ;
 }
 
-static void	create_fuse(t_thread *thread)
+static bool	create_fuse(t_thread *thread)
 {
 	t_thread	*head;
 	int			*tmp_address;
 
 	head = thread;
 	tmp_address = (int *)ft_calloc(sizeof(int), 1);
+	if (malloc_error(tmp_address))
+		return (destory_thread(thread), false);
 	head->mutex->start = tmp_address;
 	thread = thread->next;
 	while (thread != head)
@@ -71,7 +72,7 @@ static void	create_fuse(t_thread *thread)
 		thread->mutex->start = tmp_address;
 		thread = thread->next;
 	}
-	return ;
+	return (true);
 }
 
 bool	init_thread(t_root *root, t_input *input)
@@ -85,15 +86,16 @@ bool	init_thread(t_root *root, t_input *input)
 	while (index < input->number_philos)
 	{
 		new = create_thread(root, head, index + 1);
-		if (!new)
-			return (false);
+		if (malloc_error(new))
+			return (free(root->input), false);
 		if (index == 0)
 			head = new;
 		add_back_thread(head, new);
 		new = NULL;
 		index++;
 	}
-	create_fuse(head);
+	if (!create_fuse(head))
+		return (free(root->input), false);
 	root->thread = head;
 	return (true);
 }
