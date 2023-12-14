@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#              #
-#    Updated: 2023/11/30 11:44:19 by csakamot         ###   ########.fr        #
+#    Updated: 2023/12/14 14:17:51 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ HEAD		= ./includes/
 PRE			= ./srcs/
 MAIN		= philo/
 INPUT		= input/
+THREAD		= thread/
 UTILS		= utils/
 ERROR		= error/
 ##-----------------------------##
@@ -30,11 +31,13 @@ ERROR		= error/
 ##------------Srcs-------------##
 MAINSRC			= philo.c
 INPUTSRC		= input.c init_input.c
+THREADSRC		= init_thread.c init_mutex.c main_thread.c wait_thread.c destory_thread.c
 UTILSSRC		= input_utils.c ft_atoi.c ft_bzero.c ft_calloc.c
 ERRORSRC		= malloc_error.c
 
 SRCS			= ${addprefix ${MAIN}, ${MAINSRC}} ${addprefix ${INPUT}, ${INPUTSRC}} \
-					${addprefix ${UTILS}, ${UTILSSRC}} ${addprefix ${ERROR}, ${ERRORSRC}}
+					${addprefix ${THREAD}, ${THREADSRC}} \
+					${addprefix ${UTILS}, ${UTILSSRC}} ${addprefix ${ERROR}, ${ERRORSRC}} \
 ##-----------------------------##
 
 
@@ -46,7 +49,7 @@ OBJS		= ${addprefix ${PRE}, ${SRCS:.c=.o}}
 
 
 ##----------conpiler-----------##
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -pthread -Wall -Wextra -Werror -fsanitize=address
 ##-----------------------------##
 
 

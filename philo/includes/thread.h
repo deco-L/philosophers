@@ -6,16 +6,28 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/02 16:38:50 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:33:40 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREAD_H
 # define THREAD_H
 
+# define EXP 1
+
 # include <pthread.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdbool.h>
 # include "structure.h"
 # include "utils.h"
 # include "error.h"
+
+bool	init_thread(t_root *root, t_input *input);
+bool	init_mutex(t_thread *thread);
+bool	start_thread(t_thread *thread);
+void	*routine(void *arg);
+void	wait_thread(t_input *input, t_thread *thread);
+void	destory_thread(t_thread *head);
 
 #endif
