@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:06:28 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:49:13 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_mutex
 
 typedef struct s_thread
 {
-	int				errorno;
 	pthread_t		*thread;
 	t_mutex			*mutex;
 	struct s_thread	*prev;

@@ -5,6 +5,7 @@
 		"structure.h": "c",
 		"utils.h": "c",
 		"pthread.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"philo.h": "c"
 	}
 }

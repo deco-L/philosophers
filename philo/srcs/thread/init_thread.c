@@ -6,17 +6,16 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:23:19 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:49:06 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/thread.h"
 
-static t_thread	*create_thread(t_root *root, t_thread *head, int id)
+static t_thread	*create_thread(t_thread *head, int id)
 {
 	t_thread	*new;
 
-	(void)root;
 	new = (t_thread *)ft_calloc(sizeof(t_thread), 1);
 	if (malloc_error(new))
 		return (destory_thread(head), NULL);
@@ -27,9 +26,7 @@ static t_thread	*create_thread(t_root *root, t_thread *head, int id)
 	new->thread = (pthread_t *)ft_calloc(sizeof(pthread_t), 1);
 	if (malloc_error(new->thread))
 		return (destory_thread(head), NULL);
-	new->errorno = pthread_create(new->thread, NULL, \
-						routine, (void *)new->mutex);
-	if (new->errorno != 0)
+	if (pthread_create(new->thread, NULL, routine, (void *)new->mutex) != 0)
 		return (destory_thread(head), NULL);
 	return (new);
 }
@@ -85,7 +82,7 @@ bool	init_thread(t_root *root, t_input *input)
 	head = NULL;
 	while (index < input->number_philos)
 	{
-		new = create_thread(root, head, index + 1);
+		new = create_thread(head, index + 1);
 		if (malloc_error(new))
 			return (free(root->input), false);
 		if (index == 0)
