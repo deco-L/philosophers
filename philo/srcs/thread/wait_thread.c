@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   wait_thread.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:35:22 by csakamot         ###   ########.fr       */
+/*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
+/*   Updated: 2023/12/14 17:49:55 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../../includes/thread.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <pthread.h>
-# include "input.h"
-# include "thread.h"
+void	wait_thread(t_input *input, t_thread *thread)
+{
+	int	index;
 
-#endif
+	index = 0;
+	while (index < input->number_philos)
+	{
+		pthread_join(*(thread->thread), NULL);
+		thread = thread->next;
+		index++;
+	}
+	return ;
+}

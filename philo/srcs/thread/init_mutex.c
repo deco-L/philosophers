@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 15:04:09 by sakamoto          #+#    #+#             */
-/*   Updated: 2023/12/02 18:59:55 by csakamot         ###   ########.fr       */
+/*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
+/*   Updated: 2023/12/14 17:11:17 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "../../includes/thread.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+bool	init_mutex(t_thread *thread, int id)
 {
-	char	*c;
+	t_mutex	*mutex;
 
-	if (nmemb == 0 || size == 0)
-	{
-		c = (void *)malloc(1);
-		c[0] = 0;
-		return ((void *)c);
-	}
-	if (size != 0 && nmemb > (size_t)SIZE_MAX / size)
-		return (NULL);
-	c = (void *)malloc(nmemb * size);
-	if (c == NULL)
-		return (NULL);
-	ft_bzero(c, nmemb * size);
-	return ((void *)c);
+	mutex = (t_mutex *)ft_calloc(sizeof(t_mutex), 1);
+	if (malloc_error(mutex))
+		return (false);
+	mutex->fork = (pthread_mutex_t *)ft_calloc(sizeof(pthread_mutex_t), 1);
+	if (malloc_error(mutex->fork))
+		return (false);
+	mutex->id = id;
+	pthread_mutex_init(mutex->fork, NULL);
+	thread->mutex = mutex;
+	return (true);
 }
