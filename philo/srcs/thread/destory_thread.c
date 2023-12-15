@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 18:37:46 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/15 12:15:16 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	destory_thread(t_thread *head)
 
 	cw_thread = head;
 	nw_thread = NULL;
-	free(head->mutex->start);
 	while (cw_thread != head || nw_thread != head)
 	{
 		nw_thread = cw_thread->next;

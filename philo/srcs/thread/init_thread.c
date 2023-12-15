@@ -6,11 +6,17 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:49:06 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:43:12 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/thread.h"
+
+static bool	set_start_time(t_thread *thread)
+{
+	
+	return (true);
+}
 
 static t_thread	*create_thread(t_thread *head, int id)
 {
@@ -53,25 +59,6 @@ static void	add_back_thread(t_thread *head, t_thread *new)
 	return ;
 }
 
-static bool	create_fuse(t_thread *thread)
-{
-	t_thread	*head;
-	int			*tmp_address;
-
-	head = thread;
-	tmp_address = (int *)ft_calloc(sizeof(int), 1);
-	if (malloc_error(tmp_address))
-		return (destory_thread(thread), false);
-	head->mutex->start = tmp_address;
-	thread = thread->next;
-	while (thread != head)
-	{
-		thread->mutex->start = tmp_address;
-		thread = thread->next;
-	}
-	return (true);
-}
-
 bool	init_thread(t_root *root, t_input *input)
 {
 	int			index;
@@ -91,8 +78,7 @@ bool	init_thread(t_root *root, t_input *input)
 		new = NULL;
 		index++;
 	}
-	if (!create_fuse(head))
-		return (free(root->input), false);
+	set_start_time(head);
 	root->thread = head;
 	return (true);
 }
