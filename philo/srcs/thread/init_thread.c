@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 16:46:13 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:03:03 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	set_start_time(t_thread *thread)
 	head = thread;
 	if (gettimeofday(&tv, NULL))
 		return (destory_thread(head), false);
-	head->philo->fire = tv.tv_sec + 5;
+	head->philo->fire = tv.tv_sec + 3;
 	thread = thread->next;
 	while (thread != head)
 	{

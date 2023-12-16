@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 17:28:45 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:56:01 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-bool	str_isdigit(char *str);
-long	get_time(void);
-int		ft_atoi(const char *nptr);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
+bool		str_isdigit(char *str);
+long long	get_time(void);
+int			ft_atoi(const char *nptr);
+void		ft_bzero(void *s, size_t n);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 12:51:00 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:56:28 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_died(t_philo *philo)
 {
-	printf("%ld %d %s", get_time(), philo->id, DIED);
+	printf("%lld %d %s", get_time(), philo->id, DIED);
 	return ;
 }
 
