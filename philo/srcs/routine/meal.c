@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 14:56:23 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:50:57 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	take_fork(t_philo *philo, pthread_mutex_t *another)
 {
+	usleep(philo->id * 10);
 	while (true)
 	{
 		if (check_died(philo))
@@ -37,6 +38,12 @@ bool	philo_meal(t_philo *philo)
 		another = philo->right;
 	else
 		another = philo->left;
+	if (philo->fork == another)
+	{
+		if (check_died(philo))
+			return (death_notice(philo), false);
+		return (true);
+	}
 	if (!take_fork(philo, another))
 		return (death_notice(philo), false);
 	printf("%lld %d %s", get_time(), philo->id, EAT);

@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 13:20:06 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:30:30 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	init_philo(t_thread *thread, t_input *input, int id)
 	philo->time_die = input->time_die;
 	philo->time_eat = input->time_eat;
 	philo->time_sleep = input->time_sleep;
+	philo->count_task = input->count_task;
 	thread->philo = philo;
 	return (true);
 }
