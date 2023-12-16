@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 14:46:27 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:12:06 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ static void	yooi_don(long long fire)
 
 void	*routine(void *arg)
 {
-	t_mutex			*mutex;
-	// struct timeval	tv;
+	int		count;
+	t_philo	*philo;
 
-	mutex = arg;
-	// printf("[%d]ready.\n", mutex->id);
-	yooi_don(mutex->fire);
-	// printf("start.\n");
-	// printf("[%d]start.%d\n", mutex->id, *(mutex->start));
-	// gettimeofday(&tv, NULL);
-	// printf("tv_sec:%ld, tv_usec:%ld\n", tv.tv_sec, tv.tv_usec);
+	count = 0;
+	philo = arg;
+	yooi_don(philo->fire);
+	philo->mealtime = get_time();
+	while (count < philo->count_task || philo->count_task == 0)
+	{
+		if (!philo_meal(philo))
+			break ;
+		philo_sleep(philo);
+		philo_think(philo);
+		if (philo->count_task != 0)
+			count++;
+	}
 	return (NULL);
 }

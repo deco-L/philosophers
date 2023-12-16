@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/02 15:46:31 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:32:12 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,23 @@ static void	assign_arguments(t_input *input, int argc, char **argv)
 	return ;
 }
 
-static bool	check_assigned_free(t_input *input)
+static bool	check_assigned_free(t_input *input, int argc)
 {
 	bool	judge;
 
 	judge = false;
 	if (input->number_philos <= 0)
 		judge = true;
-	else if (input->time_die < 0)
+	else if (input->time_die <= 0)
 		judge = true;
-	else if (input->time_eat < 0)
+	else if (input->time_eat <= 0)
 		judge = true;
-	else if (input->time_sleep < 0)
+	else if (input->time_sleep <= 0)
 		judge = true;
 	else if (input->count_task < 0)
 		judge = true;
+	else if (input->count_task == 0 && argc == 6)
+		return (free(input), true);
 	if (judge)
 	{
 		printf("Error\nInvalid argument.\n");
@@ -52,7 +54,7 @@ bool	init_input(t_root *root, int argc, char **argv)
 	if (malloc_error(root->input))
 		return (false);
 	assign_arguments(root->input, argc, argv);
-	if (check_assigned_free(root->input))
+	if (check_assigned_free(root->input, argc))
 		return (false);
 	return (true);
 }

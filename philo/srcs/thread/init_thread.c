@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 14:45:51 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:46:13 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@ static bool	set_start_time(t_thread *thread)
 	head = thread;
 	if (gettimeofday(&tv, NULL))
 		return (destory_thread(head), false);
-	head->mutex->fire = tv.tv_sec + 5;
+	head->philo->fire = tv.tv_sec + 5;
 	thread = thread->next;
 	while (thread != head)
 	{
-		thread->mutex->fire = head->mutex->fire;
+		thread->philo->fire = head->philo->fire;
 		thread = thread->next;
 	}
 	return (true);
 }
 
-static t_thread	*new_thread(t_thread *head, int id)
+static t_thread	*new_thread(t_thread *head, t_input *input, int id)
 {
 	t_thread	*new;
 
 	new = (t_thread *)ft_calloc(sizeof(t_thread), 1);
 	if (malloc_error(new))
 		return (destory_thread(head), NULL);
-	new->prev = NULL;
-	new->next = NULL;
-	if (!init_mutex(new, id))
+	if (!init_philo(new, input, id))
 		return (destory_thread(head), NULL);
 	new->thread = (pthread_t *)ft_calloc(sizeof(pthread_t), 1);
 	if (malloc_error(new->thread))
 		return (destory_thread(head), NULL);
+	new->prev = NULL;
+	new->next = NULL;
 	return (new);
 }
 
@@ -73,14 +73,16 @@ static bool	create_thread(t_thread *thread, t_input *input)
 {
 	int			index;
 	t_thread	*head;
-	void		*mutex;
+	void		*philo;
 
 	index = 0;
 	head = thread;
 	while (index < input->number_philos)
 	{
-		mutex = thread->mutex;
-		if (pthread_create(thread->thread, NULL, routine, mutex) != 0)
+		thread->philo->right = thread->prev->philo->fork;
+		thread->philo->left = thread->next->philo->fork;
+		philo = thread->philo;
+		if (pthread_create(thread->thread, NULL, routine, philo) != 0)
 			return (destory_thread(head), NULL);
 		thread = thread->next;
 		index++;
@@ -98,7 +100,7 @@ bool	init_thread(t_root *root, t_input *input)
 	head = NULL;
 	while (index < input->number_philos)
 	{
-		new = new_thread(head, index + 1);
+		new = new_thread(head, input, index + 1);
 		if (malloc_error(new))
 			return (free(root->input), false);
 		if (index == 0)

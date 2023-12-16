@@ -6,20 +6,20 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 12:15:16 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:43:49 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/thread.h"
 
-static void	destory_mutex(t_mutex *mutex)
+static void	destory_mutex(t_philo *philo)
 {
-	if (mutex->fork)
+	if (philo->fork)
 	{
-		pthread_mutex_destroy(mutex->fork);
-		free(mutex->fork);
+		pthread_mutex_destroy(philo->fork);
+		free(philo->fork);
 	}
-	free(mutex);
+	free(philo);
 	return ;
 }
 
@@ -33,8 +33,8 @@ void	destory_thread(t_thread *head)
 	while (cw_thread != head || nw_thread != head)
 	{
 		nw_thread = cw_thread->next;
-		if (cw_thread->mutex)
-			destory_mutex(cw_thread->mutex);
+		if (cw_thread->philo)
+			destory_mutex(cw_thread->philo);
 		if (cw_thread->thread)
 		{
 			pthread_detach(*(cw_thread->thread));
