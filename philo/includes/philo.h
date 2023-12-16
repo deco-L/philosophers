@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:35:22 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:07:53 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include <pthread.h>
 # include "input.h"
 # include "thread.h"
+# include "routine.h"
 
 #endif

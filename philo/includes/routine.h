@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   routine.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 14:56:01 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:50:46 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef ROUTINE_H
+# define ROUTINE_H
 
-# include <limits.h>
-# include <sys/time.h>
-# include <sys/types.h>
+# define TAKE	"has taken a fork\n"
+# define EAT	"is eating\n"
+# define SLEEP	"is sleeping\n"
+# define THINK	"is thinking\n"
+# define DIED	"died\n"
+# define DEATH	1
+
+# include <pthread.h>
 # include <stdio.h>
-# include <stdint.h>
-# include <stdlib.h>
 # include <stdbool.h>
+# include <sys/time.h>
+# include <unistd.h>
+# include "structure.h"
+# include "utils.h"
+# include "error.h"
 
-bool		str_isdigit(char *str);
-long long	get_time(void);
-int			ft_atoi(const char *nptr);
-void		ft_bzero(void *s, size_t n);
-void		*ft_calloc(size_t nmemb, size_t size);
+bool	philo_meal(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
+void	philo_died(t_philo *philo);
+bool	check_died(t_philo *philo);
+void	death_notice(t_philo *philo);
 
 #endif

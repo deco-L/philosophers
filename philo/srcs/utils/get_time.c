@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_thread.c                                      :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 16:07:50 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:55:43 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/thread.h"
+#include "../../includes/utils.h"
 
-void	wait_thread(t_input *input, t_thread *thread)
+long long	get_time(void)
 {
-	int	index;
+	struct timeval	tv;
 
-	index = 0;
-	while (index < input->number_philos)
-	{
-		pthread_join(*(thread->thread), NULL);
-		free(thread->thread);
-		thread->thread = NULL;
-		thread = thread->next;
-		index++;
-	}
-	return ;
+	gettimeofday(&tv, NULL);
+	return ((long long)(tv.tv_sec * 1000 + tv.tv_usec / 1000));
 }

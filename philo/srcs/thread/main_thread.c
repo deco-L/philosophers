@@ -6,38 +6,39 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/14 17:56:55 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:03:23 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/thread.h"
 
-static void	yoooi(int *index)
+static void	yooi_don(long long fire)
 {
-	while (!(*index))
-		;
-	return ;
-}
+	struct timeval	tv;
 
-bool	don(t_thread *thread)
-{
-	usleep(2000000);
-	printf("wake up\n");
-	*(thread->mutex->start) = START;
-	return (true);
+	gettimeofday(&tv, NULL);
+	while (fire > tv.tv_sec)
+		gettimeofday(&tv, NULL);
+	return ;
 }
 
 void	*routine(void *arg)
 {
-	t_mutex			*mutex;
-	struct timeval	tv;
+	int		count;
+	t_philo	*philo;
 
-	mutex = arg;
-	printf("in_routine\n");
-	printf("[%d]ready.%d\n", mutex->id, *(mutex->start));
-	yoooi(mutex->start);
-	printf("[%d]start.%d\n", mutex->id, *(mutex->start));
-	gettimeofday(&tv, NULL);
-	printf("tv_sec:%ld, tv_usec:%ld\n", tv.tv_sec, tv.tv_usec);
+	count = 0;
+	philo = arg;
+	yooi_don(philo->fire);
+	philo->mealtime = get_time();
+	while (count < philo->count_task || philo->count_task == 0)
+	{
+		if (!philo_meal(philo))
+			break ;
+		philo_sleep(philo);
+		philo_think(philo);
+		if (philo->count_task != 0)
+			count++;
+	}
 	return (NULL);
 }

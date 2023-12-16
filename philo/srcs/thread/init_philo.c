@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_thread.c                                      :+:      :+:    :+:   */
+/*   init_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 16:07:50 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:20:06 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/thread.h"
 
-void	wait_thread(t_input *input, t_thread *thread)
+bool	init_philo(t_thread *thread, t_input *input, int id)
 {
-	int	index;
+	t_philo	*philo;
 
-	index = 0;
-	while (index < input->number_philos)
-	{
-		pthread_join(*(thread->thread), NULL);
-		free(thread->thread);
-		thread->thread = NULL;
-		thread = thread->next;
-		index++;
-	}
-	return ;
+	philo = (t_philo *)ft_calloc(sizeof(t_philo), 1);
+	if (malloc_error(philo))
+		return (destory_thread(thread), false);
+	philo->fork = (pthread_mutex_t *)ft_calloc(sizeof(pthread_mutex_t), 1);
+	if (malloc_error(philo->fork))
+		return (destory_thread(thread), false);
+	pthread_mutex_init(philo->fork, NULL);
+	philo->id = id;
+	philo->fire = LONG_MAX;
+	philo->time_die = input->time_die;
+	philo->time_eat = input->time_eat;
+	philo->time_sleep = input->time_sleep;
+	thread->philo = philo;
+	return (true);
 }

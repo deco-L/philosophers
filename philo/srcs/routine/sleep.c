@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_thread.c                                      :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 16:07:50 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:56:17 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/thread.h"
+#include "../../includes/routine.h"
 
-void	wait_thread(t_input *input, t_thread *thread)
+void	philo_sleep(t_philo *philo)
 {
-	int	index;
-
-	index = 0;
-	while (index < input->number_philos)
-	{
-		pthread_join(*(thread->thread), NULL);
-		free(thread->thread);
-		thread->thread = NULL;
-		thread = thread->next;
-		index++;
-	}
+	printf("%lld %d %s", get_time(), philo->id, SLEEP);
+	usleep(philo->time_sleep * 1000);
 	return ;
 }
