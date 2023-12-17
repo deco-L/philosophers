@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 19:35:38 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:01:04 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ void	destory_thread(t_thread *head, t_philo_root *philo_root)
 
 	cw_thread = head;
 	nw_thread = NULL;
-	if (!head)
-		return ;
-	pthread_mutex_lock(philo_root->death);
 	while (cw_thread != head || nw_thread != head)
 	{
 		nw_thread = cw_thread->next;
