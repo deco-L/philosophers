@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 19:35:18 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:03:49 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	surveillance(t_input *input, t_thread *thread)
 		philo = thread->philo;
 		if (philo->mealtime == 0)
 			continue ;
-		if (philo->status != END && check_died(philo))
+		if (check_died(philo) && philo->status != END)
 			return (destory_thread(thread, philo->philo_root), false);
 		if (philo->status == END)
 			release++;
