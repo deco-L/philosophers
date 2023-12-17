@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 20:28:53 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 20:38:15 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	accurate_usleep(int time)
 	while (tmp > passed - now)
 	{
 		passed = get_time();
-		usleep(1000);
+		usleep(200);
 	}
 	return ;
 }
