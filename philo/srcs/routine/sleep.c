@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 15:40:58 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:27:47 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	philo_sleep(t_philo *philo)
 {
+	pthread_mutex_lock(philo->philo_root->print);
 	printf("%lld %d %s", get_time(), philo->id, SLEEP);
-	usleep(philo->time_sleep * 1000);
+	pthread_mutex_unlock(philo->philo_root->print);
+	accurate_usleep(philo->time_sleep);
 	return ;
 }
