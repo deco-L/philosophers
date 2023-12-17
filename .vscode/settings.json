@@ -61,6 +61,7 @@
 	"routine.h": "c",
 	"utils.h": "c",
 	"philo.h": "c",
-	"survei.h": "c"
+	"survei.h": "c",
+	"structure.h": "c"
 }
 }

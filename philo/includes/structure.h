@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 13:58:24 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:23:25 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define STRUCTURE_H
 
 # include <pthread.h>
+
+typedef struct s_philo_root
+{
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*death;
+}				t_philo_root;
 
 typedef struct s_philo
 {
@@ -25,10 +31,10 @@ typedef struct s_philo
 	int				time_eat;
 	int				time_sleep;
 	int				count_task;
-	void			*thread;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*left;
+	t_philo_root	*philo_root;
 }				t_philo;
 
 typedef struct s_thread
@@ -50,9 +56,10 @@ typedef struct s_input
 
 typedef struct s_root
 {
-	int			start;
-	t_input		*input;
-	t_thread	*thread;
+	int				start;
+	t_philo_root	*philo_root;
+	t_input			*input;
+	t_thread		*thread;
 }				t_root;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 15:45:48 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 18:08:30 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	take_fork(t_philo *philo, pthread_mutex_t *another)
 {
 	if (philo->id % 2)
-		usleep(100);
+		accurate_usleep(100);
 	pthread_mutex_lock(another);
 	pthread_mutex_lock(philo->fork);
 	printf("%lld %d %s", get_time(), philo->id, TAKE);
@@ -32,7 +32,7 @@ bool	philo_meal(t_philo *philo, int *count)
 		return (true);
 	take_fork(philo, another);
 	printf("%lld %d %s", get_time(), philo->id, EAT);
-	usleep(philo->time_eat * 1000);
+	accurate_usleep(philo->time_eat);
 	if (philo->count_task != 0)
 		*count = *count + 1;
 	if (philo->count_task != 0 && *count == philo->count_task)
