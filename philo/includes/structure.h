@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 12:26:30 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 13:58:24 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_philo
 	int				time_eat;
 	int				time_sleep;
 	int				count_task;
+	void			*thread;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*left;

@@ -6,14 +6,12 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 13:11:00 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:38:28 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREAD_H
 # define THREAD_H
-
-# define START 1
 
 # include <pthread.h>
 # include <stdio.h>

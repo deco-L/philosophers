@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   died.c                                             :+:      :+:    :+:   */
+/*   survei.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 15:47:17 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:37:17 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/routine.h"
+#include "../../includes/survei.h"
 
-void	philo_died(t_philo *philo)
+bool	surveillance(t_input *input, t_thread *thread)
 {
-	printf("%lld %d %s", get_time(), philo->id, DIED);
-	return ;
-}
+	int			release;
+	t_thread	*head;
+	t_philo		*philo;
 
-bool	check_died(t_philo *philo)
-{
-	long	cool_time;
-
-	cool_time = get_time() - philo->mealtime;
-	if (cool_time > philo->time_die)
-		return (philo_died(philo), true);
-	return (false);
+	release = 0;
+	head = thread;
+	while (true)
+	{
+		if (thread == head)
+			release = 0;
+		philo = thread->philo;
+		if (philo->mealtime == 0)
+			continue ;
+		if (philo->status != END && check_died(philo))
+			return (destory_thread(thread), false);
+		if (philo->status == END)
+			release++;
+		if (philo->count_task != 0 && release == input->number_philos)
+			break ;
+		thread = thread->next;
+	}
+	wait_thread(input, thread);
+	return (true);
 }

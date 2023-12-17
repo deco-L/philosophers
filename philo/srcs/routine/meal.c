@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 15:50:57 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:45:48 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,29 @@
 
 static bool	take_fork(t_philo *philo, pthread_mutex_t *another)
 {
-	usleep(philo->id * 10);
-	while (true)
-	{
-		if (check_died(philo))
-			return (false);
-		if (!pthread_mutex_lock(philo->fork) && \
-					!pthread_mutex_lock(another))
-			break ;
-		pthread_mutex_unlock(philo->fork);
-		pthread_mutex_unlock(another);
-	}
+	if (philo->id % 2)
+		usleep(100);
+	pthread_mutex_lock(another);
+	pthread_mutex_lock(philo->fork);
 	printf("%lld %d %s", get_time(), philo->id, TAKE);
 	philo->mealtime = get_time();
 	return (true);
 }
 
-bool	philo_meal(t_philo *philo)
+bool	philo_meal(t_philo *philo, int *count)
 {
 	pthread_mutex_t	*another;
 
-	if (philo->id % 2)
-		another = philo->right;
-	else
-		another = philo->left;
+	another = philo->right;
 	if (philo->fork == another)
-	{
-		if (check_died(philo))
-			return (death_notice(philo), false);
 		return (true);
-	}
-	if (!take_fork(philo, another))
-		return (death_notice(philo), false);
+	take_fork(philo, another);
 	printf("%lld %d %s", get_time(), philo->id, EAT);
 	usleep(philo->time_eat * 1000);
+	if (philo->count_task != 0)
+		*count = *count + 1;
+	if (philo->count_task != 0 && *count == philo->count_task)
+		philo->status = END;
 	pthread_mutex_unlock(philo->fork);
 	pthread_mutex_unlock(another);
 	return (true);
