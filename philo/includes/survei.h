@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   survei.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 13:32:08 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 14:21:52 by csakamot         ###   ########.fr       */
+/*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
+/*   Updated: 2023/12/17 14:41:18 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef SURVEI_H
+# define SURVEI_H
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <pthread.h>
-# include "input.h"
+# include <stdbool.h>
+# include "structure.h"
 # include "thread.h"
+# include "input.h"
 # include "routine.h"
-# include "survei.h"
+# include "utils.h"
+
+bool	surveillance(t_input *input, t_thread *thread);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 12:50:46 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:59:11 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define SLEEP	"is sleeping\n"
 # define THINK	"is thinking\n"
 # define DIED	"died\n"
-# define DEATH	1
+# define END	1
 
 # include <pthread.h>
 # include <stdio.h>
@@ -29,11 +29,10 @@
 # include "utils.h"
 # include "error.h"
 
-bool	philo_meal(t_philo *philo);
+bool	philo_meal(t_philo *philo, int *count);
 void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
 void	philo_died(t_philo *philo);
 bool	check_died(t_philo *philo);
-void	death_notice(t_philo *philo);
 
 #endif

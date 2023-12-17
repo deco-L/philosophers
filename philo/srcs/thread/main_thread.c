@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 15:30:34 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:12:19 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	yooi_don(long long fire)
 
 void	*routine(void *arg)
 {
-	int		count;
-	t_philo	*philo;
+	int			count;
+	t_philo		*philo;
 
 	count = 0;
 	philo = arg;
@@ -33,12 +33,9 @@ void	*routine(void *arg)
 	philo->mealtime = get_time();
 	while (count < philo->count_task || philo->count_task == 0)
 	{
-		if (!philo_meal(philo))
-			break ;
+		philo_meal(philo, &count);
 		philo_sleep(philo);
 		philo_think(philo);
-		if (philo->count_task != 0)
-			count++;
 	}
 	return (NULL);
 }

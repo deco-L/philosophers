@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/16 14:56:28 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:08:14 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,4 @@ bool	check_died(t_philo *philo)
 	if (cool_time > philo->time_die)
 		return (philo_died(philo), true);
 	return (false);
-}
-
-void	death_notice(t_philo *philo)
-{
-	pthread_mutex_lock(philo->fork);
-	philo->status = DEATH;
-	pthread_mutex_unlock(philo->fork);
-	return ;
 }

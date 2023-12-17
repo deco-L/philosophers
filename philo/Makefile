@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#              #
-#    Updated: 2023/12/16 12:36:31 by csakamot         ###   ########.fr        #
+#    Updated: 2023/12/17 14:44:52 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MAIN		= philo/
 INPUT		= input/
 THREAD		= thread/
 ROUTINE		= routine/
+SURVEI		= surveillance/
 UTILS		= utils/
 ERROR		= error/
 ##-----------------------------##
@@ -34,12 +35,14 @@ MAINSRC			= philo.c
 INPUTSRC		= input.c init_input.c
 THREADSRC		= init_thread.c init_philo.c main_thread.c wait_thread.c destory_thread.c
 ROUTINESRC		= meal.c sleep.c think.c died.c
+SURVEISRC		= survei.c
 UTILSSRC		= input_utils.c get_time.c ft_atoi.c ft_bzero.c ft_calloc.c
 ERRORSRC		= malloc_error.c
 
 SRCS			= ${addprefix ${MAIN}, ${MAINSRC}} ${addprefix ${INPUT}, ${INPUTSRC}} \
-					${addprefix ${THREAD}, ${THREADSRC}} ${addprefix ${ROUTINE}, ${ROUTINESRC}}\
-					${addprefix ${UTILS}, ${UTILSSRC}} ${addprefix ${ERROR}, ${ERRORSRC}} \
+					${addprefix ${THREAD}, ${THREADSRC}} ${addprefix ${ROUTINE}, ${ROUTINESRC}} \
+					${addprefix ${UTILS}, ${UTILSSRC}} ${addprefix ${SURVEI}, ${SURVEISRC}} \
+					${addprefix ${ERROR}, ${ERRORSRC}} \
 ##-----------------------------##
 
 

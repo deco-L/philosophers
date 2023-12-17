@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/15 16:43:49 by csakamot         ###   ########.fr       */
+/*   Updated: 2023/12/17 14:05:48 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	destory_thread(t_thread *head)
 
 	cw_thread = head;
 	nw_thread = NULL;
+	if (!head)
+		return ;
 	while (cw_thread != head || nw_thread != head)
 	{
 		nw_thread = cw_thread->next;
@@ -43,5 +45,6 @@ void	destory_thread(t_thread *head)
 		free(cw_thread);
 		cw_thread = nw_thread;
 	}
+	head = NULL;
 	return ;
 }
