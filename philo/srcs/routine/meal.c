@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 20:27:43 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:13:37 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	philo_meal(t_philo *philo, int *count)
 		*count = *count + 1;
 	if (philo->count_task != 0 && *count == philo->count_task)
 		philo->status = END;
-	pthread_mutex_unlock(philo->fork);
 	pthread_mutex_unlock(another);
+	pthread_mutex_unlock(philo->fork);
 	return (true);
 }

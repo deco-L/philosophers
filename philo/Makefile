@@ -6,7 +6,7 @@
 #    By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/01 14:21:20 by csakamot          #+#    #+#              #
-#    Updated: 2023/12/17 18:42:19 by csakamot         ###   ########.fr        #
+#    Updated: 2024/01/22 17:32:50 by csakamot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ OBJS		= ${addprefix ${PRE}, ${SRCS:.c=.o}}
 
 
 ##----------conpiler-----------##
-CFLAGS		= -pthread -Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= -pthread -Wall -Wextra -Werror -fsanitize=thread
 ##-----------------------------##
 
 
