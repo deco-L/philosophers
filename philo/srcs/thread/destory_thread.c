@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 20:01:04 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:50:01 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	destory_thread(t_thread *head, t_philo_root *philo_root)
 		free(cw_thread);
 		cw_thread = nw_thread;
 	}
-	pthread_mutex_unlock(philo_root->death);
 	destory_philo_root(philo_root);
 	head = NULL;
 	return ;

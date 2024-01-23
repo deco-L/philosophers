@@ -6,7 +6,7 @@
 /*   By: csakamot <csakamot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:31:22 by csakamot          #+#    #+#             */
-/*   Updated: 2023/12/17 20:28:18 by csakamot         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:34:00 by csakamot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*routine(void *arg)
 	count = 0;
 	philo = arg;
 	yooi_don(philo->fire);
-	if (philo->id %2)
+	if (philo->id % 2)
 		accurate_usleep(100);
 	philo->mealtime = get_time();
 	while (count < philo->count_task || philo->count_task == 0)
